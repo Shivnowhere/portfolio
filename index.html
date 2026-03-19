@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shivam Sharma | AI Integration Specialist & Product Developer</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#eef2ff',
+                            100: '#e0e7ff',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                            900: '#312e81',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom CSS for Animations & Scrollbar -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        body { font-family: 'Inter', sans-serif; }
+        
+        /* Scroll Reveal Animation Classes */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        .dark ::-webkit-scrollbar-thumb { background: #475569; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+    </style>
+
+    <!-- Dark Mode Initial Script to prevent flickering -->
+    <script>
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
+</head>
+<body class="bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-gray-200 transition-colors duration-300 antialiased selection:bg-primary-500 selection:text-white">
+
+    <!-- NAVBAR -->
+    <header class="fixed w-full top-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-800 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="#" class="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary-600 to-indigo-500 dark:from-primary-400 dark:to-indigo-300">
+                        SS.
+                    </a>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <nav class="hidden md:flex space-x-8 items-center">
+                    <a href="#about" class="text-gray-600 hover:text-primary-600 dark:text-gray-300 dark:hover:text-primary-400 font-medium transition-colors">About</a>
+                    <a href="#skills" class="text-gray-600 hover:text-primary-600 dark:text-gray-300 dark:hover:text-primary-400 font-medium transition-colors">Skills</a>
+                    <a href="#projects" class="text-gray-600 hover:text-primary-600 dark:text-gray-300 dark:hover:text-primary-400 font-medium transition-colors">Projects</a>
+                    <a href="#contact" class="text-gray-600 hover:text-primary-600 dark:text-gray-300 dark:hover:text-primary-400 font-medium transition-colors">Contact</a>
+                    
+                    <!-- Dark Mode Toggle Button -->
+                    <button id="theme-toggle" type="button" class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none rounded-lg text-sm p-2.5 transition-colors">
+                        <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                        <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+                    </button>
+                </nav>
+
+                <!-- Mobile menu button -->
+                <div class="flex items-center md:hidden gap-2">
+                    <button id="theme-toggle-mobile" type="button" class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg p-2">
+                        <svg id="theme-toggle-dark-icon-mobile" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                        <svg id="theme-toggle-light-icon-mobile" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+                    </button>
+                    <button type="button" id="mobile-menu-btn" class="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white p-2 focus:outline-none">
+                        <!-- Heroicon: bars-3 -->
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu (Hidden by default) -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#about" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary-600 hover:bg-gray-50 dark:text-gray-300 dark:hover:text-primary-400 dark:hover:bg-gray-800">About</a>
+                <a href="#skills" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary-600 hover:bg-gray-50 dark:text-gray-300 dark:hover:text-primary-400 dark:hover:bg-gray-800">Skills</a>
+                <a href="#projects" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary-600 hover:bg-gray-50 dark:text-gray-300 dark:hover:text-primary-400 dark:hover:bg-gray-800">Projects</a>
+                <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary-600 hover:bg-gray-50 dark:text-gray-300 dark:hover:text-primary-400 dark:hover:bg-gray-800">Contact</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="pt-16">
+        
+        <!-- 1. HERO SECTION -->
+        <section class="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
+            <!-- Background Decoration -->
+            <div class="absolute inset-0 z-0">
+                <div class="absolute top-20 left-10 w-72 h-72 bg-primary-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 dark:opacity-10 animate-blob"></div>
+                <div class="absolute top-40 right-10 w-72 h-72 bg-purple-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 dark:opacity-10 animate-blob animation-delay-2000"></div>
+                <div class="absolute -bottom-8 left-40 w-72 h-72 bg-blue-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 dark:opacity-10 animate-blob animation-delay-4000"></div>
+            </div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full reveal">
+                <div class="text-center md:text-left flex flex-col md:flex-row items-center justify-between gap-12">
+                    <!-- Text Content -->
+                    <div class="md:w-3/5 space-y-6">
+                        <p class="text-primary-600 dark:text-primary-400 font-semibold tracking-wide uppercase">Hello World, I am</p>
+                        <h1 class="text-5xl md:text-6xl font-extrabold text-gray-900 dark:text-white leading-tight">
+                            Shivam Sharma
+                        </h1>
+                        <h2 class="text-2xl md:text-3xl font-medium text-gray-600 dark:text-gray-400 mt-2">
+                            AI Integration Specialist & <br class="hidden md:block" /> Product Developer
+                        </h2>
+                        <p class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mt-4">
+                            Bridging the gap between business requirements and technology. I build complex, high-value ERPs and software solutions using AI-assisted development and advanced prompt engineering.
+                        </p>
+                        <div class="flex flex-col sm:flex-row gap-4 mt-8 justify-center md:justify-start">
+                            <a href="#projects" class="inline-flex justify-center items-center px-6 py-3 border border-transparent text-base font-medium rounded-xl text-white bg-primary-600 hover:bg-primary-700 shadow-md hover:shadow-lg transition-all duration-300">
+                                View Projects
+                                <!-- Heroicon: arrow-right -->
+                                <svg class="ml-2 -mr-1 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
+                            </a>
+                            <a href="#contact" class="inline-flex justify-center items-center px-6 py-3 border-2 border-gray-300 dark:border-gray-700 text-base font-medium rounded-xl text-gray-700 dark:text-gray-200 bg-transparent hover:bg-gray-50 dark:hover:bg-gray-800 transition-all duration-300">
+                                Contact Me
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Image/Avatar Placeholder -->
+                    <div class="md:w-2/5 flex justify-center">
+                        <div class="relative w-64 h-64 md:w-80 md:h-80 rounded-full border-4 border-white dark:border-gray-800 shadow-2xl overflow-hidden bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
+                            <!-- TODO: Local profile image ka path yahan daalein -->
+                            <img src="images/profile.jpg" alt="Shivam Sharma" class="object-cover w-full h-full" onerror="this.src=''; this.className='hidden'; this.nextElementSibling.classList.remove('hidden');">
+                            <!-- Fallback icon if image fails -->
+                            <svg class="hidden w-24 h-24 text-gray-400" fill="currentColor" viewBox="0 0 24 24"><path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. ABOUT ME -->
+        <section id="about" class="py-20 bg-white dark:bg-gray-800/50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-900 dark:text-white">About Me</h2>
+                    <div class="w-16 h-1 bg-primary-600 mx-auto mt-4 rounded"></div>
+                </div>
+                <div class="bg-gray-50 dark:bg-gray-800 rounded-2xl p-8 shadow-sm border border-gray-100 dark:border-gray-700 max-w-4xl mx-auto text-center md:text-left">
+                    <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
+                        I am a tech-savvy and results-driven professional currently in the final semester of my BCA. My expertise lies in leveraging advanced AI prompt engineering to conceptualize, build, and deploy complex software solutions without traditional coding constraints.
+                    </p>
+                    <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+                        My career goal is to utilize my diverse tech skill set—spanning from product development and IT infrastructure to digital marketing—in a dynamic role to drive efficiency and innovation. Whether it's crafting multi-platform ERPs or designing intuitive CRMs, I focus on delivering high-value, practical solutions.
+                    </p>
+                    <div class="mt-8 flex flex-wrap justify-center md:justify-start gap-4">
+                        <div class="flex items-center text-gray-600 dark:text-gray-400">
+                            <!-- Heroicon: map-pin -->
+                            <svg class="w-5 h-5 mr-2 text-primary-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                            Faridabad, Haryana
+                        </div>
+                        <div class="flex items-center text-gray-600 dark:text-gray-400">
+                            <!-- Heroicon: academic-cap -->
+                            <svg class="w-5 h-5 mr-2 text-primary-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" /></svg>
+                            BCA Final Semester (MDU)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. SKILLS SECTION -->
+        <section id="skills" class="py-20 bg-gray-50 dark:bg-gray-900">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl font-bold text-gray-900 dark:text-white">Core Competencies</h2>
+                    <div class="w-16 h-1 bg-primary-600 mx-auto mt-4 rounded"></div>
+                    <p class="mt-4 text-gray-600 dark:text-gray-400">What I bring to the table</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                    <!-- Skill Group 1 -->
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
+                        <h3 class="text-xl font-semibold mb-6 text-gray-900 dark:text-white flex items-center">
+                            <svg class="w-6 h-6 mr-2 text-primary-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+                            AI & Automation
+                        </h3>
+                        <div class="space-y-4">
+                            <div>
+                                <div class="flex justify-between mb-1 text-sm font-medium text-gray-700 dark:text-gray-300">
+                                    <span>Advanced Prompt Engineering</span>
+                                    <span>95%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2 dark:bg-gray-700">
+                                    <div class="bg-primary-600 h-2 rounded-full" style="width: 95%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-1 text-sm font-medium text-gray-700 dark:text-gray-300">
+                                    <span>AI Workflow Integration</span>
+                                    <span>90%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2 dark:bg-gray-700">
+                                    <div class="bg-primary-600 h-2 rounded-full" style="width: 90%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Skill Group 2 -->
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
+                        <h3 class="text-xl font-semibold mb-6 text-gray-900 dark:text-white flex items-center">
+                            <svg class="w-6 h-6 mr-2 text-primary-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /></svg>
+                            Product Development
+                        </h3>
+                        <div class="space-y-4">
+                            <div>
+                                <div class="flex justify-between mb-1 text-sm font-medium text-gray-700 dark:text-gray-300">
+                                    <span>Logic Building & SDLC</span>
+                                    <span>90%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2 dark:bg-gray-700">
+                                    <div class="bg-primary-600 h-2 rounded-full" style="width: 90%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-1 text-sm font-medium text-gray-700 dark:text-gray-300">
+                                    <span>UI/UX & Deployment</span>
+                                    <span>85%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2 dark:bg-gray-700">
+                                    <div class="bg-primary-600 h-2 rounded-full" style="width: 85%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Technical Skills Chips -->
+                    <div class="md:col-span-2 bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 mt-4">
+                        <h3 class="text-xl font-semibold mb-4 text-gray-900 dark:text-white">Technologies & Tools</h3>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="px-4 py-2 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-sm font-medium border border-gray-200 dark:border-gray-600">Dart / Flutter Frameworks</span>
+                            <span class="px-4 py-2 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-sm font-medium border border-gray-200 dark:border-gray-600">Firebase Architecture</span>
+                            <span class="px-4 py-2 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-sm font-medium border border-gray-200 dark:border-gray-600">HTML / CSS / JS</span>
+                            <span class="px-4 py-2 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-sm font-medium border border-gray-200 dark:border-gray-600">WordPress CMS</span>
+                            <span class="px-4 py-2 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-sm font-medium border border-gray-200 dark:border-gray-600">IT Infrastructure (Windows, Linux)</span>
+                            <span class="px-4 py-2 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-sm font-medium border border-gray-200 dark:border-gray-600">Digital Marketing (SEO, Ads)</span>
+                            <span class="px-4 py-2 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-sm font-medium border border-gray-200 dark:border-gray-600">Canva & PhotoScape</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. PROJECTS SECTION -->
+        <section id="projects" class="py-20 bg-white dark:bg-gray-800/50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16 reveal">
+                    <h2 class="text-3xl font-bold text-gray-900 dark:text-white">Key Projects</h2>
+                    <div class="w-16 h-1 bg-primary-600 mx-auto mt-4 rounded"></div>
+                    <p class="mt-4 text-gray-600 dark:text-gray-400">Freelance & Independent Work</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                    
+                    <!-- Project 1: Cash Craft POS -->
+                    <div class="bg-gray-50 dark:bg-gray-800 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 border border-gray-100 dark:border-gray-700 reveal flex flex-col">
+                        <div class="h-48 overflow-hidden bg-gray-200 dark:bg-gray-700 relative">
+                            <!-- Local image path setup -->
+                            <img src="images/cash-craft.jpg" alt="Cash Craft POS" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+                            <div class="absolute top-3 right-3 bg-white/90 dark:bg-gray-900/90 backdrop-blur px-3 py-1 rounded-full text-xs font-semibold text-primary-600 dark:text-primary-400">
+                                Client Work (Fiverr)
+                            </div>
+                        </div>
+                        <div class="p-6 flex-grow flex flex-col">
+                            <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">Cash Craft POS</h3>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm mb-4 flex-grow">
+                                Comprehensive offline multi-business ERP system. Engineered modules for inventory management, billing, unit masters, and automated data backups. Handles 80% of operations for grocery, pharma, and jewellery.
+                            </p>
+                            <div class="mb-4 flex flex-wrap gap-2">
+                                <span class="text-xs bg-indigo-100 text-indigo-800 dark:bg-indigo-900/50 dark:text-indigo-300 px-2 py-1 rounded">ERP Architecture</span>
+                                <span class="text-xs bg-indigo-100 text-indigo-800 dark:bg-indigo-900/50 dark:text-indigo-300 px-2 py-1 rounded">Logic Building</span>
+                            </div>
+                            <div class="flex gap-4 border-t border-gray-200 dark:border-gray-700 pt-4 mt-auto">
+                                <a href="https://drive.google.com/drive/folders/10C0UHzkwfkUF6U_1yJHGTA0plsiF3IgI?usp=drive_link" target="_blank" class="text-sm font-medium text-primary-600 hover:text-primary-700 dark:text-primary-400 dark:hover:text-primary-300 flex items-center">
+                                    <svg class="w-4 h-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" /></svg>
+                                    View on Drive
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 2: Fine ERP for Jewellers -->
+                    <div class="bg-gray-50 dark:bg-gray-800 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 border border-gray-100 dark:border-gray-700 reveal flex flex-col">
+                        <div class="h-48 overflow-hidden bg-gray-200 dark:bg-gray-700 relative">
+                            <img src="images/fine-erp.jpg" alt="Fine ERP for Jewellers" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+                            <div class="absolute top-3 right-3 bg-white/90 dark:bg-gray-900/90 backdrop-blur px-3 py-1 rounded-full text-xs font-semibold text-green-600 dark:text-green-400">
+                                Play Store App
+                            </div>
+                        </div>
+                        <div class="p-6 flex-grow flex flex-col">
+                            <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">Fine ERP for Jewellers</h3>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm mb-4 flex-grow">
+                                Architected a multi-platform ERP (Windows & Android) for jewellery businesses. Features license key verification, real-time data backup, dynamic billing, and ledger management.
+                            </p>
+                            <div class="mb-4 flex flex-wrap gap-2">
+                                <span class="text-xs bg-indigo-100 text-indigo-800 dark:bg-indigo-900/50 dark:text-indigo-300 px-2 py-1 rounded">Cross-Platform</span>
+                                <span class="text-xs bg-indigo-100 text-indigo-800 dark:bg-indigo-900/50 dark:text-indigo-300 px-2 py-1 rounded">Data Management</span>
+                            </div>
+                            <div class="flex gap-4 border-t border-gray-200 dark:border-gray-700 pt-4 mt-auto">
+                                <a href="https://drive.google.com/drive/folders/1XLelm-YIaArdcr1MEJRZdSyWq_kPDyxw" target="_blank" class="text-sm font-medium text-primary-600 hover:text-primary-700 dark:text-primary-400 dark:hover:text-primary-300 flex items-center">
+                                    <svg class="w-4 h-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" /></svg>
+                                    View on Drive
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 3: Digital Products CRM (Electron) -->
+                    <div class="bg-gray-50 dark:bg-gray-800 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 border border-gray-100 dark:border-gray-700 reveal flex flex-col">
+                        <div class="h-48 overflow-hidden bg-gray-200 dark:bg-gray-700">
+                            <img src="images/crm-app.jpg" alt="Digital Products CRM" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+                        </div>
+                        <div class="p-6 flex-grow flex flex-col">
+                            <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">Digital Products CRM (Electron)</h3>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm mb-4 flex-grow">
+                                Offline CRM system automating manual entries for recharge-based products. Integrated referral tracking, recurring recharges, team payouts, and automated reports.
+                            </p>
+                            <div class="mb-4 flex flex-wrap gap-2">
+                                <span class="text-xs bg-indigo-100 text-indigo-800 dark:bg-indigo-900/50 dark:text-indigo-300 px-2 py-1 rounded">Electron JS</span>
+                                <span class="text-xs bg-indigo-100 text-indigo-800 dark:bg-indigo-900/50 dark:text-indigo-300 px-2 py-1 rounded">Automation</span>
+                            </div>
+                            <div class="flex gap-4 border-t border-gray-200 dark:border-gray-700 pt-4 mt-auto">
+                                <a href="https://drive.google.com/drive/folders/1rbD6feVyq9B_1umINaeg6C7-T1fTAVGR?usp=drive_link" target="_blank" class="text-sm font-medium text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 flex items-center">
+                                    <svg class="w-4 h-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" /></svg>
+                                    View on Drive
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Project 4: FINE Copper Trading Windows App -->
+                    <div class="bg-gray-50 dark:bg-gray-800 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 border border-gray-100 dark:border-gray-700 reveal flex flex-col">
+                        <div class="h-48 overflow-hidden bg-gray-200 dark:bg-gray-700 relative">
+                            <img src="images/copper-trading.jpg" alt="FINE Copper Trading App" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+                            <div class="absolute top-3 right-3 bg-white/90 dark:bg-gray-900/90 backdrop-blur px-3 py-1 rounded-full text-xs font-semibold text-blue-600 dark:text-blue-400">
+                                Windows App
+                            </div>
+                        </div>
+                        <div class="p-6 flex-grow flex flex-col">
+                            <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">FINE Copper Trading App</h3>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm mb-4 flex-grow">
+                                A specialized Windows application developed for copper trading businesses. Streamlines daily trading operations, inventory management, and business accounting.
+                            </p>
+                            <div class="mb-4 flex flex-wrap gap-2">
+                                <span class="text-xs bg-indigo-100 text-indigo-800 dark:bg-indigo-900/50 dark:text-indigo-300 px-2 py-1 rounded">Windows Desktop</span>
+                                <span class="text-xs bg-indigo-100 text-indigo-800 dark:bg-indigo-900/50 dark:text-indigo-300 px-2 py-1 rounded">Trading ERP</span>
+                            </div>
+                            <div class="flex gap-4 border-t border-gray-200 dark:border-gray-700 pt-4 mt-auto">
+                                <a href="https://drive.google.com/drive/folders/1I_ivOMeveXyOGLoWLdW6g2XVHSJoYepE?usp=drive_link" target="_blank" class="text-sm font-medium text-primary-600 hover:text-primary-700 dark:text-primary-400 dark:hover:text-primary-300 flex items-center">
+                                    <svg class="w-4 h-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" /></svg>
+                                    View on Drive
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 5: Secured Chat App -->
+                    <div class="bg-gray-50 dark:bg-gray-800 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 border border-gray-100 dark:border-gray-700 reveal flex flex-col">
+                        <div class="h-48 overflow-hidden bg-gray-200 dark:bg-gray-700 relative">
+                            <!-- Fixed broken img tag format here -->
+                            <img src="images/chat-app.jpg" alt="Secured Chat App" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+                            <div class="absolute top-3 right-3 bg-white/90 dark:bg-gray-900/90 backdrop-blur px-3 py-1 rounded-full text-xs font-semibold text-orange-600 dark:text-orange-400">
+                                In Progress
+                            </div>
+                        </div>
+                        <div class="p-6 flex-grow flex flex-col">
+                            <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">Secured Chat App</h3>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm mb-4 flex-grow">
+                                Conceptualizing a user-to-user chat and social networking app focused on absolute privacy. Allows profile creation and interaction without collecting personal information.
+                            </p>
+                            <div class="mb-4 flex flex-wrap gap-2">
+                                <span class="text-xs bg-indigo-100 text-indigo-800 dark:bg-indigo-900/50 dark:text-indigo-300 px-2 py-1 rounded">UI/UX</span>
+                                <span class="text-xs bg-indigo-100 text-indigo-800 dark:bg-indigo-900/50 dark:text-indigo-300 px-2 py-1 rounded">Security Concepts</span>
+                            </div>
+                            <div class="flex gap-4 border-t border-gray-200 dark:border-gray-700 pt-4 mt-auto">
+                                <a href="https://drive.google.com/drive/folders/1jwlXEbgK-CrOg32avHfRnZv7za-tQpog?usp=drive_link" target="_blank" class="text-sm font-medium text-primary-600 hover:text-primary-700 dark:text-primary-400 dark:hover:text-primary-300 flex items-center">
+                                    <svg class="w-4 h-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" /></svg>
+                                    View on Drive
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. RESUME SECTION -->
+        <section class="py-16 bg-primary-600 dark:bg-primary-900">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center reveal">
+                <h2 class="text-3xl font-bold text-white mb-4">Want a deeper dive into my experience?</h2>
+                <p class="text-primary-100 mb-8 text-lg">Download my complete resume to see my educational background and full skill set.</p>
+                <!-- TODO: Replace '#' with the actual link to your PDF resume (e.g., Google Drive link or local path) -->
+                <a href="#" target="_blank" class="inline-flex justify-center items-center px-8 py-4 border border-transparent text-lg font-bold rounded-xl text-primary-600 bg-white hover:bg-gray-50 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                    <svg class="w-6 h-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
+                    Download Resume (PDF)
+                </a>
+            </div>
+        </section>
+
+        <!-- 6. CONTACT SECTION -->
+        <section id="contact" class="py-20 bg-gray-50 dark:bg-gray-900">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl font-bold text-gray-900 dark:text-white">Get In Touch</h2>
+                    <div class="w-16 h-1 bg-primary-600 mx-auto mt-4 rounded"></div>
+                    <p class="mt-4 text-gray-600 dark:text-gray-400">Open to opportunities and freelance projects</p>
+                </div>
+
+                <div class="bg-white dark:bg-gray-800 rounded-3xl shadow-lg border border-gray-100 dark:border-gray-700 max-w-4xl mx-auto overflow-hidden flex flex-col md:flex-row">
+                    <!-- Contact Info -->
+                    <div class="md:w-1/2 bg-gray-900 dark:bg-gray-950 p-10 text-white flex flex-col justify-center">
+                        <h3 class="text-2xl font-bold mb-6 text-white">Contact Information</h3>
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <svg class="w-6 h-6 mr-4 text-primary-400 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+                                <div>
+                                    <p class="text-sm text-gray-400 uppercase tracking-wider">Email</p>
+                                    <a href="mailto:telloshiv@gmail.com" class="text-lg font-medium hover:text-primary-400 transition-colors">telloshiv@gmail.com</a>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <svg class="w-6 h-6 mr-4 text-primary-400 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
+                                <div>
+                                    <p class="text-sm text-gray-400 uppercase tracking-wider">Phone</p>
+                                    <p class="text-lg font-medium">+91-7217*****</p> <!-- Replace with full number -->
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <svg class="w-6 h-6 mr-4 text-primary-400 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" /></svg>
+                                <div>
+                                    <p class="text-sm text-gray-400 uppercase tracking-wider">Social Links</p>
+                                    <div class="flex gap-4 mt-2">
+                                        <!-- Replace '#' with your actual URLs -->
+                                        <a href="#" class="text-white hover:text-primary-400 font-medium">LinkedIn</a>
+                                        <a href="#" class="text-white hover:text-primary-400 font-medium">GitHub</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Quick Message Form UI (UI only, needs backend for actual sending) -->
+                    <div class="md:w-1/2 p-10">
+                        <h3 class="text-2xl font-bold mb-6 text-gray-900 dark:text-white">Send a Message</h3>
+                        <form onsubmit="event.preventDefault(); document.getElementById('success-msg').classList.remove('hidden'); this.reset();" class="space-y-4">
+                            <div>
+                                <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Name</label>
+                                <input type="text" id="name" required class="mt-1 block w-full rounded-lg border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white shadow-sm focus:border-primary-500 focus:ring-primary-500 py-2 px-3">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Email</label>
+                                <input type="email" id="email" required class="mt-1 block w-full rounded-lg border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white shadow-sm focus:border-primary-500 focus:ring-primary-500 py-2 px-3">
+                            </div>
+                            <div>
+                                <label for="message" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Message</label>
+                                <textarea id="message" rows="4" required class="mt-1 block w-full rounded-lg border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white shadow-sm focus:border-primary-500 focus:ring-primary-500 py-2 px-3"></textarea>
+                            </div>
+                            <button type="submit" class="w-full flex justify-center py-3 px-4 border border-transparent rounded-xl shadow-sm text-sm font-medium text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 transition-colors">
+                                Send Message
+                            </button>
+                            <p id="success-msg" class="hidden text-green-600 dark:text-green-400 text-sm font-medium mt-2 text-center">Thanks! I'll get back to you soon.</p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 7. FOOTER -->
+    <footer class="bg-white dark:bg-gray-950 border-t border-gray-200 dark:border-gray-800 py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center">
+            <p class="text-gray-500 dark:text-gray-400 text-sm text-center md:text-left">
+                &copy; <span id="year"></span> Shivam Sharma. All rights reserved.
+            </p>
+            <p class="text-gray-500 dark:text-gray-400 text-sm mt-2 md:mt-0 flex items-center">
+                Made with <svg class="w-4 h-4 mx-1 text-red-500 animate-pulse" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"></path></svg> by Shivam
+            </p>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // Update Copyright Year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Mobile Menu Toggle Logic
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu on link click
+        menu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.add('hidden');
+            });
+        });
+
+        // Dark Mode Toggle Logic
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const themeToggleMobileBtn = document.getElementById('theme-toggle-mobile');
+        
+        const darkIcon = document.getElementById('theme-toggle-dark-icon');
+        const lightIcon = document.getElementById('theme-toggle-light-icon');
+        const darkIconMobile = document.getElementById('theme-toggle-dark-icon-mobile');
+        const lightIconMobile = document.getElementById('theme-toggle-light-icon-mobile');
+
+        // Initial Icon setup
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            lightIcon.classList.remove('hidden');
+            lightIconMobile.classList.remove('hidden');
+        } else {
+            darkIcon.classList.remove('hidden');
+            darkIconMobile.classList.remove('hidden');
+        }
+
+        function toggleTheme() {
+            // Toggle icons inside button
+            darkIcon.classList.toggle('hidden');
+            lightIcon.classList.toggle('hidden');
+            darkIconMobile.classList.toggle('hidden');
+            lightIconMobile.classList.toggle('hidden');
+
+            // If set via local storage previously
+            if (localStorage.getItem('color-theme')) {
+                if (localStorage.getItem('color-theme') === 'light') {
+                    document.documentElement.classList.add('dark');
+                    localStorage.setItem('color-theme', 'dark');
+                } else {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.setItem('color-theme', 'light');
+                }
+            } else {
+                // If NOT set via local storage previously
+                if (document.documentElement.classList.contains('dark')) {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.setItem('color-theme', 'light');
+                } else {
+                    document.documentElement.classList.add('dark');
+                    localStorage.setItem('color-theme', 'dark');
+                }
+            }
+        }
+
+        themeToggleBtn.addEventListener('click', toggleTheme);
+        themeToggleMobileBtn.addEventListener('click', toggleTheme);
+
+        // Scroll Reveal Animation Logic (Intersection Observer)
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 100; // Trigger point
+
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        
+        window.addEventListener("scroll", reveal);
+        // Trigger once on load
+        reveal();
+    </script>
+</body>
+</html>
